@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 import java.util.ArrayList;
 
@@ -29,19 +30,21 @@ static StaionAdapter adapter;
     ScrollView scrollView;
     ImageView imageView;
     BitmapDrawable bitmap;
+PhotoViewAttacher mAttacher;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        scrollView =(ScrollView)findViewById(R.id.ScrollView);
+        //scrollView =(ScrollView)findViewById(R.id.ScrollView);
         imageView =(ImageView)findViewById(R.id.imageView);
-        scrollView.setHorizontalScrollBarEnabled(true);
+       // scrollView.setHorizontalScrollBarEnabled(true);
         Resources res=getResources();
         bitmap =(BitmapDrawable)res.getDrawable(R.drawable.test1);
-        int bitmapWidth=bitmap.getIntrinsicWidth();
-        int bitmapHeight=bitmap.getIntrinsicHeight();
+       // int bitmapWidth=bitmap.getIntrinsicWidth();
+       // int bitmapHeight=bitmap.getIntrinsicHeight();
         imageView.setImageDrawable(bitmap);
-        imageView.getLayoutParams().width=bitmapWidth;
-        imageView.getLayoutParams().height=bitmapHeight;
+      //  imageView.getLayoutParams().width=bitmapWidth;
+       // imageView.getLayoutParams().height=bitmapHeight;
+        mAttacher = new PhotoViewAttacher(imageView);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
          setSupportActionBar(toolbar);
