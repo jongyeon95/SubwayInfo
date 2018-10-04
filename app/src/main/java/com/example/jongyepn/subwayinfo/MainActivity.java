@@ -39,11 +39,11 @@ PhotoViewAttacher mAttacher;
        // scrollView.setHorizontalScrollBarEnabled(true);
         Resources res=getResources();
         bitmap =(BitmapDrawable)res.getDrawable(R.drawable.test1);
-       // int bitmapWidth=bitmap.getIntrinsicWidth();
-       // int bitmapHeight=bitmap.getIntrinsicHeight();
-        imageView.setImageDrawable(bitmap);
-      //  imageView.getLayoutParams().width=bitmapWidth;
-       // imageView.getLayoutParams().height=bitmapHeight;
+       //int bitmapWidth=bitmap.getIntrinsicWidth();
+       //int bitmapHeight=bitmap.getIntrinsicHeight();
+       imageView.setImageDrawable(bitmap);
+       //imageView.getLayoutParams().width=bitmapWidth;
+       //imageView.getLayoutParams().height=bitmapHeight;
         mAttacher = new PhotoViewAttacher(imageView);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
