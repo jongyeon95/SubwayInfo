@@ -23,6 +23,14 @@
             android:label="역검색"
             >
         </activity>
+        <activity android:name=".SeeLine"
+            android:label="호선으로보기"
+            >
+        </activity>
+        <activity android:name=".DetailLineinfo"
+            android:label="호선 자세히보기"
+            >
+        </activity>
         <activity android:name=".staioninfo"></activity>
     </application>
 
