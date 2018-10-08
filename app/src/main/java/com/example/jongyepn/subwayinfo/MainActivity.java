@@ -115,6 +115,9 @@ PhotoViewAttacher mAttacher;
             startActivity(intent);
 
         } else if (id == R.id.nav_gallery) {
+            Intent intent1 = new Intent(getApplicationContext(),
+                    SeeLine.class);
+            startActivity(intent1);
 
         } else if (id == R.id.nav_slideshow) {
 

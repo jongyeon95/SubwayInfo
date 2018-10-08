@@ -48,11 +48,11 @@ public class StaionAdapter extends BaseAdapter {
 
         // Set Text 01
         TextView name = (TextView) convertView.findViewById(R.id.textItem1);
-        name.setText(mItems.get(position).nName);
+        name.setText(mItems.get(position).nStaionname);
 
         // Set Text 02
         TextView age = (TextView) convertView.findViewById(R.id.textItem2);
-        age.setText(mItems.get(position).nAge);
+        age.setText(mItems.get(position).nlinename);
 
         return convertView;
     }
@@ -60,12 +60,12 @@ public class StaionAdapter extends BaseAdapter {
 
 class MyItem {
     int mIcon; // image resource
-    String nName; // text
-    String nAge;  // text
+    String nStaionname; // text
+    String nlinename;  // text
 
     MyItem(int aIcon, String aName, String aAge) {
         mIcon = aIcon;
-        nName = aName;
-        nAge = aAge;
+        nStaionname = aName;
+        nlinename = aAge;
     }
 }

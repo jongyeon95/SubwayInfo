@@ -10,24 +10,21 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class FindStaion extends AppCompatActivity {
-
-
+public class SeeLine extends AppCompatActivity {
     static StaionAdapter adapter;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findsubwaystaion);
         ArrayList<MyItem> data = new ArrayList<MyItem>();
-        data.add(new MyItem(R.drawable.samplestaion, "Bella", "1"));
-        data.add(new MyItem(R.drawable.samplestaion, "Charlie", "2"));
-        data.add(new MyItem(R.drawable.samplestaion, "Daisy", "1.5"));
-        data.add(new MyItem(R.drawable.samplestaion, "Duke", "1"));
-        data.add(new MyItem(R.drawable.samplestaion, "Max", "2"));
-        data.add(new MyItem(R.drawable.samplestaion, "Happy", "4"));
-        data.add(new MyItem(R.drawable.samplestaion, "Luna", "3"));
-        data.add(new MyItem(R.drawable.samplestaion, "Bob", "2"));
+        data.add(new MyItem(R.drawable.samplestaion, "1호선", "1"));
+        data.add(new MyItem(R.drawable.samplestaion, "2호선", "2"));
+        data.add(new MyItem(R.drawable.samplestaion, "3호선", "1.5"));
+        data.add(new MyItem(R.drawable.samplestaion, "4호선", "1"));
+        data.add(new MyItem(R.drawable.samplestaion, "5호선","2"));
+        data.add(new MyItem(R.drawable.samplestaion, "6호선", "4"));
+        data.add(new MyItem(R.drawable.samplestaion, "7호선", "3"));
+        data.add(new MyItem(R.drawable.samplestaion, "8호선", "2"));
+        data.add(new MyItem(R.drawable.shinbundangicon, "신분당선", "2"));
 
         //어댑터 생성
         adapter = new StaionAdapter(this, R.layout.findsubwaystaionitem, data);
@@ -41,10 +38,10 @@ public class FindStaion extends AppCompatActivity {
                                     int position, long id) {
                 //   String name = (String) ((TextView)vClicked.findViewById(R.id.textItem1)).getText();
                 String name = ((MyItem) adapter.getItem(position)).nStaionname;
-                Toast.makeText(FindStaion.this, name + " selected",
+                Toast.makeText(SeeLine.this, name + " selected",
                         Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),
-                        staioninfo.class);
+                        DetailLineinfo.class);
                 startActivity(intent);
             }
         });
