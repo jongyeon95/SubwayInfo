@@ -48,11 +48,9 @@ public class StaionAdapter extends BaseAdapter {
 
         // Set Text 01
         TextView name = (TextView) convertView.findViewById(R.id.textItem1);
-        name.setText(mItems.get(position).nStaionname);
+        String infos = mItems.get(position).nStaionname + mItems.get(position).nlinename;
+        name.setText(infos);
 
-        // Set Text 02
-        TextView age = (TextView) convertView.findViewById(R.id.textItem2);
-        age.setText(mItems.get(position).nlinename);
 
         return convertView;
     }

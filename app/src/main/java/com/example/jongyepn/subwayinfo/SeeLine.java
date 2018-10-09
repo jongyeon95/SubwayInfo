@@ -16,15 +16,15 @@ public class SeeLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findsubwaystaion);
         ArrayList<MyItem> data = new ArrayList<MyItem>();
-        data.add(new MyItem(R.drawable.samplestaion, "1호선", "1"));
-        data.add(new MyItem(R.drawable.samplestaion, "2호선", "2"));
-        data.add(new MyItem(R.drawable.samplestaion, "3호선", "1.5"));
-        data.add(new MyItem(R.drawable.samplestaion, "4호선", "1"));
-        data.add(new MyItem(R.drawable.samplestaion, "5호선","2"));
-        data.add(new MyItem(R.drawable.samplestaion, "6호선", "4"));
-        data.add(new MyItem(R.drawable.samplestaion, "7호선", "3"));
-        data.add(new MyItem(R.drawable.samplestaion, "8호선", "2"));
-        data.add(new MyItem(R.drawable.shinbundangicon, "신분당선", "2"));
+        data.add(new MyItem(R.drawable.line1, "1", "호선"));
+        data.add(new MyItem(R.drawable.line2, "2", "호선"));
+        data.add(new MyItem(R.drawable.line3, "3", "호선"));
+        data.add(new MyItem(R.drawable.line4, "4", "호선"));
+        data.add(new MyItem(R.drawable.line5, "5","호선"));
+        data.add(new MyItem(R.drawable.line6, "6", "호선"));
+        data.add(new MyItem(R.drawable.line7, "7", "호선"));
+        data.add(new MyItem(R.drawable.line8, "8", "호선"));
+        data.add(new MyItem(R.drawable.shinbundangicon, "신분당선", ""));
 
         //어댑터 생성
         adapter = new StaionAdapter(this, R.layout.findsubwaystaionitem, data);
