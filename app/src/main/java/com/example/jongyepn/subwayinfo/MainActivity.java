@@ -2,6 +2,8 @@ package com.example.jongyepn.subwayinfo;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +33,7 @@ static StaionAdapter adapter;
     ImageView imageView;
     BitmapDrawable bitmap;
 PhotoViewAttacher mAttacher;
+private Bitmap imagebitmap = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -38,13 +41,14 @@ PhotoViewAttacher mAttacher;
         imageView =(ImageView)findViewById(R.id.imageView);
        // scrollView.setHorizontalScrollBarEnabled(true);
         Resources res=getResources();
-        bitmap =(BitmapDrawable)res.getDrawable(R.drawable.test1);
+        //bitmap =(BitmapDrawable)res.getDrawable(R.drawable.test1);
        //int bitmapWidth=bitmap.getIntrinsicWidth();
        //int bitmapHeight=bitmap.getIntrinsicHeight();
-       imageView.setImageDrawable(bitmap);
+       //imageView.setImageDrawable(bitmap);
        //imageView.getLayoutParams().width=bitmapWidth;
        //imageView.getLayoutParams().height=bitmapHeight;
-        mAttacher = new PhotoViewAttacher(imageView);
+        loadBitmapImage(imageView,R.drawable.iiii);
+       mAttacher = new PhotoViewAttacher(imageView);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
          setSupportActionBar(toolbar);
@@ -133,4 +137,21 @@ PhotoViewAttacher mAttacher;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private  void loadBitmapImage(ImageView imageView, int imageId){
+        BitmapFactory.Options options =new BitmapFactory.Options();
+        options.inPreferredConfig =Bitmap.Config.RGB_565;//디코딩될 포맷 지정
+        options.inSampleSize=2;//축소해서 디코딩 가로세로 2로 나눔
+        options.inMutable =true;// 변환가능한 mutable형태로 반환
+        if(imagebitmap != null){
+            options.inBitmap =imagebitmap;
+        }
+        imagebitmap =BitmapFactory.decodeResource(getResources(),imageId,options);
+        if(imagebitmap==null){
+            Toast.makeText(this,"Fail", Toast.LENGTH_SHORT);
+            return;
+        }
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),imagebitmap);
+        imageView.setImageDrawable(bitmapDrawable);
+    }
+
 }
