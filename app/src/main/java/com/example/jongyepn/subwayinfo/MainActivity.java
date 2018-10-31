@@ -1,67 +1,70 @@
 package com.example.jongyepn.subwayinfo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
-import uk.co.senab.photoview.PhotoViewAttacher;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener/*, View.OnTouchListener*/ {
 static StaionAdapter adapter;
-    ScrollView scrollView;
-    ImageView imageView;
-    BitmapDrawable bitmap;
-PhotoViewAttacher mAttacher;
+    private static HorizontalScrollView Scroll_Horizontal;
+    private static ScrollView Scroll_Vertical;
+    protected static int currentX = 0;
+    protected static int currentY = 0;
 private Bitmap imagebitmap = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        scrollView =(ScrollView)findViewById(R.id.ScrollView);
-  //      imageView =(ImageView)findViewById(R.id.imageView);
-       scrollView.setHorizontalScrollBarEnabled(true);
-        Resources res=getResources();
-     //   bitmap =(BitmapDrawable)res.getDrawable(R.drawable.seoulsubway);
-      // int bitmapWidth=bitmap.getIntrinsicWidth();
-      // int bitmapHeight=bitmap.getIntrinsicHeight();
-//       imageView.setImageDrawable(bitmap);
-    //   imageView.getLayoutParams().width=10000;
-    //   imageView.getLayoutParams().height=10000;
-       // loadBitmapImage(imageView,R.drawable.iiii);
-       // imageView.setImageResource(R.drawable.seoulsubway);
-      // mAttacher = new PhotoViewAttacher(imageView);
 
+        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace , null, false);
+        v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+//줌뷰 객체 생성후
+        ZoomView zoomView = new ZoomView(this);
+
+//줌컨텐츠를 줌뷰에 넣어준다
+        zoomView.addView(v);
+
+//줌뷰를 컨테이너에 붙여준다
+        RelativeLayout main_container = (RelativeLayout) findViewById(R.id.container);
+        main_container.addView(zoomView);
+
+        Scroll_Vertical = (ScrollView) findViewById(R.id.ScrollView);
+        Scroll_Horizontal = (HorizontalScrollView) findViewById(R.id.horScrollView);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Scroll_Horizontal.scrollTo((int)Scroll_Horizontal.getWidth()/2, 0);
+            }
+        }, 100);
+
+       /* Scroll_Vertical.setOnTouchListener(this);
+        Scroll_Horizontal.setOnTouchListener(this);*/
+
+        Resources res=getResources();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
          setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -138,21 +141,36 @@ private Bitmap imagebitmap = null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private  void loadBitmapImage(ImageView imageView, int imageId){
-        BitmapFactory.Options options =new BitmapFactory.Options();
-        options.inPreferredConfig =Bitmap.Config.RGB_565;//디코딩될 포맷 지정
-        options.inSampleSize=2;//축소해서 디코딩 가로세로 2로 나눔
-        options.inMutable =true;// 변환가능한 mutable형태로 반환
-        if(imagebitmap != null){
-            options.inBitmap =imagebitmap;
-        }
-        imagebitmap =BitmapFactory.decodeResource(getResources(),imageId,options);
-        if(imagebitmap==null){
-            Toast.makeText(this,"Fail", Toast.LENGTH_SHORT);
-            return;
-        }
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),imagebitmap);
-        imageView.setImageDrawable(bitmapDrawable);
-    }
 
+  /*  public static void scrollBy(int x, int y)
+    {
+        Scroll_Horizontal.scrollBy(x, 0);
+        Scroll_Vertical.scrollBy(0, y);
+    }
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                currentX = (int)event.getRawX();
+                currentY = (int)event.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int x2 = (int)event.getRawX();
+                int y2 = (int)event.getRawY();
+                scrollBy(currentX-x2, currentY-y2);
+                currentX = x2;
+                currentY = y2;
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            default:
+                currentX = (int)event.getRawX();
+                currentY = (int)event.getRawY();
+                break;
+        }
+        currentX = (int)event.getRawX();
+        currentY = (int)event.getRawY();
+        return true;
+    }*/
 }

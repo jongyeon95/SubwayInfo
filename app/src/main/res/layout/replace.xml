@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/ScrollView"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:layout_gravity="center"
+    >
+
+    <HorizontalScrollView
+        android:id="@+id/horScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+
+        <RelativeLayout
+            android:id="@+id/SubLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/seoulsubway"
+
+            android:orientation="vertical"
+
+            >
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="395dp"
+                android:layout_marginTop="80dp"
+                android:text="132" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="395dp"
+                android:layout_marginTop="100dp"
+                android:text="132" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="395dp"
+                android:layout_marginTop="120dp"
+                android:text="132" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="395dp"
+                android:layout_marginTop="140dp"
+                android:text="132"
+               />
+
+
+        </RelativeLayout>
+
+    </HorizontalScrollView>
+</ScrollView>
+    </RelativeLayout>

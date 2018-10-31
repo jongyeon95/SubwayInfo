@@ -1,6 +1,5 @@
 package com.example.jongyepn.subwayinfo;
 
-import android.app.AppComponentFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
