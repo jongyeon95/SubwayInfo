@@ -17,6 +17,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="이전역"
+
     android:layout_marginLeft="10dp"
     android:layout_marginTop="30dp"/>
 
@@ -24,15 +25,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="현재역"
-            android:layout_marginLeft="180dp"
+            android:layout_centerHorizontal="true"
+
             android:layout_marginTop="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="다음역"
-            android:layout_marginLeft="350dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,13 +52,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="어디행 10:30"
-            android:layout_marginLeft="300dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="100dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="어디행 10:30"
-            android:layout_marginLeft="300dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="140dp"/>
 
     </RelativeLayout>

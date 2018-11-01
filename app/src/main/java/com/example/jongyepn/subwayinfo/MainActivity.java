@@ -1,5 +1,6 @@
 package com.example.jongyepn.subwayinfo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,6 +39,7 @@ private Bitmap imagebitmap = null;
 
         View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace , null, false);
         v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
 
 //줌뷰 객체 생성후
         ZoomView zoomView = new ZoomView(this);
@@ -63,8 +66,13 @@ private Bitmap imagebitmap = null;
 
         Resources res=getResources();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-         setSupportActionBar(toolbar);
-
+        setSupportActionBar(toolbar);
+        zoomView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unseeButton();
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,19 +83,74 @@ private Bitmap imagebitmap = null;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        final Button button2 = (Button)findViewById(R.id.ibtn2);
-        final Button button = (Button)findViewById(R.id.btn1);
-        button.setOnClickListener(new View.OnClickListener() {
+
+
+        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
+        final Button b1 = (Button)findViewById(R.id.btn1);
+        final Button b2 = (Button)findViewById(R.id.btn2);
+        final Button b3 = (Button)findViewById(R.id.btn3);
+        final Button b4 = (Button)findViewById(R.id.btn4);
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                button2.setText(button.getText());
-
-
-
-
+                seeButton(b1);
             }
         });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeButton(b2);
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeButton(b3);
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeButton(b4);
+            }
+        });
+        ibtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),
+                        DetailLineinfo.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+    public void seeButton(Button a){
+        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
+        ibtn1.setVisibility(View.VISIBLE);
+        ibtn2.setVisibility(View.VISIBLE);
+        ibtn3.setVisibility(View.VISIBLE);
+        ibtn1.setEnabled(true);
+        ibtn2.setEnabled(true);
+        ibtn3.setEnabled(true);
+        ibtn2.setText(a.getText());
+    }
+    public void unseeButton(){
+        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
+        ibtn1.setVisibility(View.INVISIBLE);
+        ibtn2.setVisibility(View.INVISIBLE);
+        ibtn3.setVisibility(View.INVISIBLE);
+        ibtn1.setEnabled(false);
+        ibtn2.setEnabled(false);
+        ibtn3.setEnabled(false);
+
     }
 
     @Override

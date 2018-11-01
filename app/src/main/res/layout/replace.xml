@@ -42,32 +42,25 @@
 
             <Button
                 android:id="@+id/btn2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="375dp"
-                android:layout_marginTop="70dp"
-                android:visibility="invisible"
-                android:enabled="false"
-
-                android:text="132" />
-            <Button
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="395dp"
                 android:layout_marginTop="100dp"
-                android:text="132" />
+                android:text="한성대입구역" />
             <Button
+                android:id="@+id/btn3"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="395dp"
                 android:layout_marginTop="120dp"
-                android:text="132" />
+                android:text="혜화" />
             <Button
+                android:id="@+id/btn4"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="395dp"
                 android:layout_marginTop="140dp"
-                android:text="132"
+                android:text="동대문"
                />
 
 

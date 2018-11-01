@@ -29,17 +29,23 @@
       android:layout_width="124dp"
       android:layout_height="50dp"
       android:layout_gravity="bottom"
+      android:visibility="invisible"
+      android:enabled="false"
       android:text="출발"/>
     <Button
         android:id="@+id/ibtn2"
         android:layout_width="124dp"
         android:layout_height="50dp"
+        android:visibility="invisible"
+        android:enabled="false"
         android:text="상세정보"
         android:layout_gravity="center_horizontal|bottom"/>
     <Button
         android:id="@+id/ibtn3"
         android:layout_width="124dp"
         android:layout_height="50dp"
+        android:visibility="invisible"
+        android:enabled="false"
         android:layout_gravity="right|bottom"
         android:text="도착"/>
 
