@@ -31,11 +31,24 @@
             android:orientation="vertical"
 
             >
+
             <Button
+                android:id="@+id/btn1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="395dp"
                 android:layout_marginTop="80dp"
+                android:text="성신여대입구역" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="375dp"
+                android:layout_marginTop="70dp"
+                android:visibility="invisible"
+                android:enabled="false"
+
                 android:text="132" />
             <Button
                 android:layout_width="20dp"

@@ -33,6 +33,8 @@
             >
         </activity>
         <activity android:name=".staioninfo"></activity>
+
+    <activity android:name=".test"></activity>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -74,8 +75,19 @@ private Bitmap imagebitmap = null;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        final Button button2 = (Button)findViewById(R.id.ibtn2);
+        final Button button = (Button)findViewById(R.id.btn1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                button2.setText(button.getText());
 
 
+
+
+            }
+        });
     }
 
     @Override
@@ -173,4 +185,5 @@ private Bitmap imagebitmap = null;
         currentY = (int)event.getRawY();
         return true;
     }*/
+
 }
