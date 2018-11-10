@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -32,13 +33,30 @@ static StaionAdapter adapter;
     private static ScrollView Scroll_Vertical;
     protected static int currentX = 0;
     protected static int currentY = 0;
+
+    AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
+    Variable variable = Variable.getInstance();  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
+
+
 private Bitmap imagebitmap = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        allSubwayInfo.setStatnNm("쌍문");  // 역정보를 받아오는 메서드
+        new GetData().execute();
+
+
         View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace , null, false);
         v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        AsyncTask.execute(new Runnable() { // 네트워크작업을 수행하기 위한 asyncTask사용
+            @Override
+            public void run() {
+                // All your networking logic
+                // should be here
+            }
+        });
 
 
 //줌뷰 객체 생성후
