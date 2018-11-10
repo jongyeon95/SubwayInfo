@@ -44,8 +44,9 @@ private Bitmap imagebitmap = null;
         setContentView(R.layout.activity_main);
 
         allSubwayInfo.setStatnNm("쌍문");  // 역정보를 받아오는 메서드
-        new GetData().execute();
 
+        new GetSubwayData().execute();
+        new GetData(MainActivity.this).execute();
 
         View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace , null, false);
         v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
