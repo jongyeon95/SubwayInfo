@@ -25,6 +25,7 @@
 
 
   <Button
+      android:background="@drawable/beforesatinon"
       android:id="@+id/ibtn1"
       android:layout_width="124dp"
       android:layout_height="50dp"
@@ -32,15 +33,9 @@
       android:visibility="invisible"
       android:enabled="false"
       android:text="출발"/>
+
     <Button
-        android:id="@+id/ibtn2"
-        android:layout_width="124dp"
-        android:layout_height="50dp"
-        android:visibility="invisible"
-        android:enabled="false"
-        android:text="상세정보"
-        android:layout_gravity="center_horizontal|bottom"/>
-    <Button
+        android:background="@drawable/afterstation"
         android:id="@+id/ibtn3"
         android:layout_width="124dp"
         android:layout_height="50dp"
@@ -48,5 +43,13 @@
         android:enabled="false"
         android:layout_gravity="right|bottom"
         android:text="도착"/>
-
+    <Button
+        android:background="@drawable/station"
+        android:id="@+id/ibtn2"
+        android:layout_width="124dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        android:enabled="false"
+        android:text="상세정보"
+        android:layout_gravity="center_horizontal|bottom"/>
 </android.support.design.widget.CoordinatorLayout>

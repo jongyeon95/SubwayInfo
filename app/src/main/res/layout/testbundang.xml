@@ -64,14 +64,16 @@
             android:layout_marginTop="140dp"/>
 
     </RelativeLayout>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <ImageView
             android:layout_width="50dp"
-            android:layout_height="370dp"
+            android:layout_height="410dp"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="35dp"
             android:background="@color/colorblack"/>
@@ -80,7 +82,8 @@
             android:layout_height="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
-            android:background="@color/colorRed"/>
+            android:background="@color/colorRed"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -133,5 +136,6 @@
 
             android:text="혼잡도: 존나높음 \n 습도: 99% \n 온도: 99도 \n "/>
     </RelativeLayout>
+</ScrollView>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
