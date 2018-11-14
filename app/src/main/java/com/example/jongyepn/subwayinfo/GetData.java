@@ -43,7 +43,7 @@ public class GetData extends GetRequest {
         // 생각해 윤석아.. 제발!!
         Log.d("값", String.valueOf(index));
         Log.d("값",seo);
-
+        //종연아 화이팅 
         for (int i = 0; i < userData.length; i++) { //
             Log.d("값",userData[i]);
             int idx = userData[i].indexOf(":");
