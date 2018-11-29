@@ -42,7 +42,7 @@
             <TextView
                 android:id="@+id/centertext"
                 android:layout_width="160dp"
-                android:layout_height="60dp"
+                android:layout_height="59dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/infob"
