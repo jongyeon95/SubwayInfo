@@ -33,7 +33,7 @@ static StaionAdapter adapter;
     private static ScrollView Scroll_Vertical;
     protected static int currentX = 0;
     protected static int currentY = 0;
-
+    String infostaion="";
     AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
     Variable variable = Variable.getInstance();  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
 
@@ -142,6 +142,7 @@ private Bitmap imagebitmap = null;
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),
                         DetailLineinfo.class);
+                intent.putExtra("INFO",infostaion);
                 startActivity(intent);
             }
         });
@@ -158,6 +159,7 @@ private Bitmap imagebitmap = null;
         ibtn2.setEnabled(true);
         ibtn3.setEnabled(true);
         ibtn2.setText(a.getText());
+        infostaion=a.getText().toString();
     }
     public void unseeButton(){
         final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
