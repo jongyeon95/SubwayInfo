@@ -214,9 +214,7 @@ private Bitmap imagebitmap = null;
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent intent = new Intent(getApplicationContext(),
-                    FindStaion.class);
-            startActivity(intent);
+
 
         } else if (id == R.id.nav_gallery) {
             Intent intent1 = new Intent(getApplicationContext(),

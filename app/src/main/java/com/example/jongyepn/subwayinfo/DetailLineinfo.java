@@ -8,7 +8,7 @@ import android.widget.TextView;
 public class DetailLineinfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testbundang);
+        setContentView(R.layout.stationinfo);
         Intent intent=getIntent();
         String infostation=intent.getStringExtra("INFO");
         TextView staioninfotext=(TextView)findViewById(R.id.centertext);
