@@ -6,7 +6,11 @@ public class Variable {
 
     private static Variable variable;
     private static ArrayList<AllSubwayInfo> allSubwayInfo = new ArrayList<AllSubwayInfo>();
+    private static ArrayList<AllSubwayInfo> UPSubwayInfo = new ArrayList<>();
+    private static ArrayList<AllSubwayInfo> DNSubwayInfo = new ArrayList<>();
 
+
+    private static ArrayList<String> Line4 = new ArrayList<>();
 
     private Variable() {
         variable = new Variable();
@@ -23,6 +27,34 @@ public class Variable {
     public static void setAllSubwayInfo(ArrayList<AllSubwayInfo> allSubwayInfo) {
         Variable.allSubwayInfo = allSubwayInfo;
     }
+
+
+
+
+    public static ArrayList<String> getLine4() {
+        return Line4;
+    }
+
+    public static void setLine4(ArrayList<String> line4) {
+        Line4 = line4;
+    }
+
+    public static ArrayList<AllSubwayInfo> getUPSubwayInfo() {
+        return UPSubwayInfo;
+    }
+
+    public static void setUPSubwayInfo(ArrayList<AllSubwayInfo> UPSubwayInfo) {
+        Variable.UPSubwayInfo = UPSubwayInfo;
+    }
+
+    public static ArrayList<AllSubwayInfo> getDNSubwayInfo() {
+        return DNSubwayInfo;
+    }
+
+    public static void setDNSubwayInfo(ArrayList<AllSubwayInfo> DNSubwayInfo) {
+        Variable.DNSubwayInfo = DNSubwayInfo;
+    }
+
 
 
 }

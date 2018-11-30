@@ -28,27 +28,32 @@ import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener/*, View.OnTouchListener*/ {
-static StaionAdapter adapter;
+    static StaionAdapter adapter;
+
+
     private static HorizontalScrollView Scroll_Horizontal;
     private static ScrollView Scroll_Vertical;
     protected static int currentX = 0;
     protected static int currentY = 0;
-    String infostaion="";
+    String infostaion = "";
     AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
-    Variable variable = Variable.getInstance();  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
+    Variable variable;  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
 
 
-private Bitmap imagebitmap = null;
+    private Bitmap imagebitmap = null;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        allSubwayInfo.setStatnNm("쌍문");  // 역정보를 받아오는 메서드
+        variable.getLine4().add("성신여대입구");
+        variable.getLine4().add("한성대입구");
+        variable.getLine4().add("혜화");
+        variable.getLine4().add("동대문");
 
-        new GetSubwayData().execute();
         new GetData(MainActivity.this).execute();
 
-        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace , null, false);
+        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace, null, false);
         v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         AsyncTask.execute(new Runnable() { // 네트워크작업을 수행하기 위한 asyncTask사용
@@ -76,14 +81,14 @@ private Bitmap imagebitmap = null;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Scroll_Horizontal.scrollTo((int)Scroll_Horizontal.getWidth()/2, 0);
+                Scroll_Horizontal.scrollTo((int) Scroll_Horizontal.getWidth() / 2, 0);
             }
         }, 100);
 
        /* Scroll_Vertical.setOnTouchListener(this);
         Scroll_Horizontal.setOnTouchListener(this);*/
 
-        Resources res=getResources();
+        Resources res = getResources();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         zoomView.setOnClickListener(new View.OnClickListener() {
@@ -104,13 +109,13 @@ private Bitmap imagebitmap = null;
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
-        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
-        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
-        final Button b1 = (Button)findViewById(R.id.btn1);
-        final Button b2 = (Button)findViewById(R.id.btn2);
-        final Button b3 = (Button)findViewById(R.id.btn3);
-        final Button b4 = (Button)findViewById(R.id.btn4);
+        final Button ibtn2 = (Button) findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button) findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button) findViewById(R.id.ibtn3);
+        final Button b1 = (Button) findViewById(R.id.btn1);
+        final Button b2 = (Button) findViewById(R.id.btn2);
+        final Button b3 = (Button) findViewById(R.id.btn3);
+        final Button b4 = (Button) findViewById(R.id.btn4);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,21 +142,46 @@ private Bitmap imagebitmap = null;
                 seeButton(b4);
             }
         });
-        ibtn2.setOnClickListener(new View.OnClickListener() {
+
+        ibtn2.setOnClickListener(new View.OnClickListener() {   // 요게 상세 정보로 보내는 버튼에 달린 리스너 동대문 누르면 동대문역 정보가 뜸
             @Override
             public void onClick(View v) {
+
+                // 역을 입력하면 10개를 가져옴
+                allSubwayInfo.setStatnNm(ibtn2.getText().toString());  // 버튼에서 역정보를 받아와서 검색함
+
+                variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
+                variable.getUPSubwayInfo().clear();  // 상행 지우기
+                variable.getDNSubwayInfo().clear();  // 하행 지우기
+
+                new GetSubwayData().execute();
+
+                for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
+                    String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
+                    if (UpDn.equals("상행")) {
+                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    } else if (UpDn.equals("하행")) {
+                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    } else if (UpDn.equals("0")) {  // 내선
+                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    } else if (UpDn.equals("1")) {  // 외선
+                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    }
+                }  // 반복되니까 다 저장이 될거다.
+
                 Intent intent = new Intent(getApplicationContext(),
                         DetailLineinfo.class);
-                intent.putExtra("INFO",infostaion);
+                intent.putExtra("INFO", infostaion);
                 startActivity(intent);
             }
         });
 
     }
-    public void seeButton(Button a){
-        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
-        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
-        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
+
+    public void seeButton(Button a) {
+        final Button ibtn2 = (Button) findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button) findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button) findViewById(R.id.ibtn3);
         ibtn1.setVisibility(View.VISIBLE);
         ibtn2.setVisibility(View.VISIBLE);
         ibtn3.setVisibility(View.VISIBLE);
@@ -159,12 +189,13 @@ private Bitmap imagebitmap = null;
         ibtn2.setEnabled(true);
         ibtn3.setEnabled(true);
         ibtn2.setText(a.getText());
-        infostaion=a.getText().toString();
+        infostaion = a.getText().toString();
     }
-    public void unseeButton(){
-        final Button ibtn2 = (Button)findViewById(R.id.ibtn2);
-        final Button ibtn1 = (Button)findViewById(R.id.ibtn1);
-        final Button ibtn3 = (Button)findViewById(R.id.ibtn3);
+
+    public void unseeButton() {
+        final Button ibtn2 = (Button) findViewById(R.id.ibtn2);
+        final Button ibtn1 = (Button) findViewById(R.id.ibtn1);
+        final Button ibtn3 = (Button) findViewById(R.id.ibtn3);
         ibtn1.setVisibility(View.INVISIBLE);
         ibtn2.setVisibility(View.INVISIBLE);
         ibtn3.setVisibility(View.INVISIBLE);
@@ -199,9 +230,9 @@ private Bitmap imagebitmap = null;
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       /// if (id == R.id.action_settings) {
-         //   return true;
-       // }
+        /// if (id == R.id.action_settings) {
+        //   return true;
+        // }
 
         return super.onOptionsItemSelected(item);
     }

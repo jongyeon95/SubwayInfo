@@ -28,7 +28,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
     String statnNm = allSubwayInfo.getStatnNm();
 
 
-
     @Override
     protected Void doInBackground(String... strings) {
         boolean inrow = false;
@@ -81,7 +80,9 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
 
         try {
-            variable.getAllSubwayInfo().clear();  //지워줘야함
+
+
+
             Log.d("로그", "에러가났습니당1");
             URL url = new URL("http://swopenAPI.seoul.go.kr/api/subway/" + KEY + "/" + TYPE + "/" + SERVICE + "/" + START_INDEX + "/" + END_INDEX + "/" + statnNm);
 
@@ -293,18 +294,22 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                             allSubwayInfo.setArvlCd(arvlCd);
 
 
-                             variable.getAllSubwayInfo().add(allSubwayInfo);  //여기서 왜 널포인트가 나는걸까???
 
 
-                            Log.d("로그", rowNum + selectedCount + totalCount + subwayId + updnLine + trainLineNm + subwayHeading + statnFid
-                                    + statnTid + statnId + statnNm + ordkey + subwayList + statnList + barvlDt + btrainNo + bstatnId + bstatnNm + recptnDt +
-                                    arvlMsg2 + arvlMsg3 + arvlCd);
+
+
+                            variable.getAllSubwayInfo().add(allSubwayInfo);  //여기서 왜 널포인트가 나는걸까???
+
+
+                            Log.d("로그", " rowNum:" + rowNum + " selectedCount:" + selectedCount + " totalCount:" + totalCount + " subwayId:" + subwayId + " updnLine:" + updnLine + " trainLineNm:" + trainLineNm +
+                                    " subwayHeading:" + subwayHeading + " statnFid:" + statnFid + " statnTid:" + statnTid + " statnId:" + statnId +
+                                    " statNm:" + statnNm + " drdkey:" + ordkey + " subwayList:" + subwayList + " statnList:" + statnList + " barvIDt:" + barvlDt + " btrainNo:" + btrainNo + " bstatnId:" + bstatnId +
+                                    " bstatnNm:" + bstatnNm + " recpnDt:" + recptnDt + " arvMsg2:" + arvlMsg2 + " arvMsg3:" + arvlMsg3 + " arvICD:" + arvlCd);
                         }
                 }
                 parserEvent = parser.next();
 
             }
-
 
 
         } catch (IOException e) {
@@ -316,7 +321,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
         return null;
     }
-
 
 
 }
