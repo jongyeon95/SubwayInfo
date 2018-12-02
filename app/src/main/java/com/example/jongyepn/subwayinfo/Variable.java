@@ -29,8 +29,6 @@ public class Variable {
     }
 
 
-
-
     public static ArrayList<String> getLine4() {
         return Line4;
     }

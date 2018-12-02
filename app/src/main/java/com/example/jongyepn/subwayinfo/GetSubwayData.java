@@ -7,6 +7,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -16,8 +17,8 @@ import java.net.URL;
 
 public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
-    AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();
-    Variable variable = Variable.getInstance();
+    AllSubwayInfo allSubwayInfo;
+    Variable variable;
 
 
     String KEY = allSubwayInfo.getKEY();
@@ -265,53 +266,69 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                             arvlCd = parser.getText();
                             inarvlCd = false;
                         }
+
+                        allSubwayInfo.setRowNum(rowNum);
+                        allSubwayInfo.setSelectedCount(selectedCount);
+                        allSubwayInfo.setTotalCount(totalCount);
+                        allSubwayInfo.setSubwayId(subwayId);
+                        allSubwayInfo.setUpdnLine(updnLine);
+                        allSubwayInfo.setTrainLineNm(trainLineNm);
+                        allSubwayInfo.setSubwayHeading(subwayHeading);
+                        allSubwayInfo.setStatnFid(statnFid);
+                        allSubwayInfo.setStatnTid(statnTid);
+                        allSubwayInfo.setStatnId(statnId);
+                        allSubwayInfo.setStatnNm(statnNm);
+                        allSubwayInfo.setOrdkey(ordkey);
+                        allSubwayInfo.setSubwayList(subwayList);
+                        allSubwayInfo.setStatnList(statnList);
+                        allSubwayInfo.setBarvlDt(barvlDt);
+                        allSubwayInfo.setBtrainNo(btrainNo);
+                        allSubwayInfo.setBstatnId(bstatnId);
+                        allSubwayInfo.setBstatnNm(bstatnNm);
+                        allSubwayInfo.setRecptnDt(recptnDt);
+                        allSubwayInfo.setArvlMsg2(arvlMsg2);
+                        allSubwayInfo.setArvlMsg3(arvlMsg3);
+                        allSubwayInfo.setArvlCd(arvlCd);
+
+                        variable.getAllSubwayInfo().add(allSubwayInfo);  //
+
                         break;
 
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("row")) {
 
-                            allSubwayInfo.setRowNum(rowNum);
-                            allSubwayInfo.setSelectedCount(selectedCount);
-                            allSubwayInfo.setTotalCount(totalCount);
-                            allSubwayInfo.setSubwayId(subwayId);
-                            allSubwayInfo.setUpdnLine(updnLine);
-                            allSubwayInfo.setTrainLineNm(trainLineNm);
-                            allSubwayInfo.setSubwayHeading(subwayHeading);
-                            allSubwayInfo.setStatnFid(statnFid);
-                            allSubwayInfo.setStatnTid(statnTid);
-                            allSubwayInfo.setStatnId(statnId);
-                            allSubwayInfo.setStatnNm(statnNm);
-                            allSubwayInfo.setOrdkey(ordkey);
-                            allSubwayInfo.setSubwayList(subwayList);
-                            allSubwayInfo.setStatnList(statnList);
-                            allSubwayInfo.setBarvlDt(barvlDt);
-                            allSubwayInfo.setBtrainNo(btrainNo);
-                            allSubwayInfo.setBstatnId(bstatnId);
-                            allSubwayInfo.setBstatnNm(bstatnNm);
-                            allSubwayInfo.setRecptnDt(recptnDt);
-                            allSubwayInfo.setArvlMsg2(arvlMsg2);
-                            allSubwayInfo.setArvlMsg3(arvlMsg3);
-                            allSubwayInfo.setArvlCd(arvlCd);
-
-
-
-
-
-
-                            variable.getAllSubwayInfo().add(allSubwayInfo);  //여기서 왜 널포인트가 나는걸까???
-
-
                             Log.d("로그", " rowNum:" + rowNum + " selectedCount:" + selectedCount + " totalCount:" + totalCount + " subwayId:" + subwayId + " updnLine:" + updnLine + " trainLineNm:" + trainLineNm +
                                     " subwayHeading:" + subwayHeading + " statnFid:" + statnFid + " statnTid:" + statnTid + " statnId:" + statnId +
                                     " statNm:" + statnNm + " drdkey:" + ordkey + " subwayList:" + subwayList + " statnList:" + statnList + " barvIDt:" + barvlDt + " btrainNo:" + btrainNo + " bstatnId:" + bstatnId +
                                     " bstatnNm:" + bstatnNm + " recpnDt:" + recptnDt + " arvMsg2:" + arvlMsg2 + " arvMsg3:" + arvlMsg3 + " arvICD:" + arvlCd);
+
                         }
                 }
                 parserEvent = parser.next();
-
             }
+            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().size()));
+            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(0).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(1).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(2).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(3).getRowNum()));
+
+            for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
+                String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
+                Log.e("상하행",UpDn);
+                if (UpDn.equals("상행")) {
+                    variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                } else if (UpDn.equals("하행")) {
+                    variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                } else if (UpDn.equals("0")) {  // 내선
+                    variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                } else if (UpDn.equals("1")) {  // 외선
+                    variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                }
+            }  // 반복되니까 다 저장이 될거다.
 
 
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("로그", "에러가났습니당!");

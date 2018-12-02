@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +40,10 @@ public class MainActivity extends AppCompatActivity
     AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
     Variable variable;  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
 
-
+    public static String url1 = "https://api.thingspeak.com/channels/553850/feeds.json?results=1";
+    public static String url2 = "https://api.thingspeak.com/channels/553851/feeds.json?results=1";
+    public static String url3 = "https://api.thingspeak.com/channels/640587/feeds.json?api_key=BNYUQ3H2YY8UF68D&results=1";
+    public static String mainurl = "null";
     private Bitmap imagebitmap = null;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         variable.getLine4().add("혜화");
         variable.getLine4().add("동대문");
 
-        new GetData(MainActivity.this).execute();
+        //new GetData(MainActivity.this).execute();
 
         View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace, null, false);
         v.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -120,12 +124,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 seeButton(b1);
+                mainurl = url1;
+                new GetData(MainActivity.this).execute();
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seeButton(b2);
+                mainurl = url2;
             }
         });
 
@@ -133,6 +140,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 seeButton(b3);
+                mainurl = url3;
             }
         });
 
@@ -156,18 +164,19 @@ public class MainActivity extends AppCompatActivity
 
                 new GetSubwayData().execute();
 
-                for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
-                    String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
-                    if (UpDn.equals("상행")) {
-                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
-                    } else if (UpDn.equals("하행")) {
-                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
-                    } else if (UpDn.equals("0")) {  // 내선
-                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
-                    } else if (UpDn.equals("1")) {  // 외선
-                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
-                    }
-                }  // 반복되니까 다 저장이 될거다.
+//                for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
+//                    String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
+//                    Log.e("상하행",UpDn);
+//                    if (UpDn.equals("상행")) {
+//                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+//                    } else if (UpDn.equals("하행")) {
+//                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+//                    } else if (UpDn.equals("0")) {  // 내선
+//                        variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+//                    } else if (UpDn.equals("1")) {  // 외선
+//                        variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+//                    }
+//                }  // 반복되니까 다 저장이 될거다.
 
                 Intent intent = new Intent(getApplicationContext(),
                         DetailLineinfo.class);

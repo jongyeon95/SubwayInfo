@@ -3,6 +3,7 @@ package com.example.jongyepn.subwayinfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 public class DetailLineinfo extends AppCompatActivity {
@@ -23,6 +24,11 @@ public class DetailLineinfo extends AppCompatActivity {
         String infostation = intent.getStringExtra("INFO");  // 인텐트로 받은 현재역 넣은거
         TextView staioninfotext = (TextView) findViewById(R.id.centertext);   // 현재역 넣은거
         staioninfotext.setText(infostation);
+
+        Log.e("지하철",variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+        Log.e("지하철",variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+        Log.e("지하철",variable.getDNSubwayInfo().get(2).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+        Log.e("지하철",variable.getDNSubwayInfo().get(3).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
 
         for (int i = 1; i < variable.getLine4().size(); i++) {  // 0은 제외로함 지금 왜냐면 첫역은 따로처리해야하니까
 
