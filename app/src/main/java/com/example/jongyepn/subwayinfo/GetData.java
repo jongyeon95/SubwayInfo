@@ -18,7 +18,7 @@ public class GetData extends GetRequest {
     @Override
     protected void onPreExecute() {
         Variable variable;
-        TextView textView =  activity.findViewById(R.id.text);
+
 
         String serverURLStr = MainActivity.mainurl;
 
@@ -32,7 +32,8 @@ public class GetData extends GetRequest {
     @Override
     protected void onPostExecute(String jsonString) {
 
-        // TextView textView = activity.findViewById(R.id.text);
+         TextView textView = activity.findViewById(R.id.Information);
+
 
         try {
 //          JSONArray jsonArray = new JSONArray(jsonString);
@@ -50,7 +51,7 @@ public class GetData extends GetRequest {
             String field4 = jsonObject2.getString("field4");
 
 
-           // textView.setText("온도 값 :" +field1 +"습도 값 :" + field2 +"미세먼지 값 :" + field3 + "혼잡도 값:" + field4) ;
+           textView.setText("온도 값 :" +field1 +"습도 값 :" + field2 +"미세먼지 값 :" + field3 + "혼잡도 값:" + field4) ;
 
         } catch (JSONException e) {
             e.printStackTrace();

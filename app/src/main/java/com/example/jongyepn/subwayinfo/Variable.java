@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Variable {
 
     private static Variable variable;
-    private static ArrayList<AllSubwayInfo> allSubwayInfo = null;
-    private static ArrayList<AllSubwayInfo> UPSubwayInfo = null;
-    private static ArrayList<AllSubwayInfo> DNSubwayInfo = null;
+    private static ArrayList<SubwayInfo> SubwayInfo = new ArrayList();
+    private static ArrayList<SubwayInfo> UPSubwayInfo = new ArrayList();
+    private static ArrayList<SubwayInfo> DNSubwayInfo = new ArrayList();
 
 
     private static ArrayList<String> Line4 = new ArrayList<>();
@@ -20,12 +20,12 @@ public class Variable {
         return variable;
     }
 
-    public static ArrayList<AllSubwayInfo> getAllSubwayInfo() {
-        return allSubwayInfo;
+    public static ArrayList<SubwayInfo> getSubwayInfo() {
+        return SubwayInfo;
     }
 
-    public static void setAllSubwayInfo(ArrayList<AllSubwayInfo> allSubwayInfo) {
-        Variable.allSubwayInfo = allSubwayInfo;
+    public static void setSubwayInfo(ArrayList<SubwayInfo> SubwayInfo) {
+        Variable.SubwayInfo = SubwayInfo;
     }
 
 
@@ -37,19 +37,19 @@ public class Variable {
         Line4 = line4;
     }
 
-    public static ArrayList<AllSubwayInfo> getUPSubwayInfo() {
+    public static ArrayList<SubwayInfo> getUPSubwayInfo() {
         return UPSubwayInfo;
     }
 
-    public static void setUPSubwayInfo(ArrayList<AllSubwayInfo> UPSubwayInfo) {
+    public static void setUPSubwayInfo(ArrayList<SubwayInfo> UPSubwayInfo) {
         Variable.UPSubwayInfo = UPSubwayInfo;
     }
 
-    public static ArrayList<AllSubwayInfo> getDNSubwayInfo() {
+    public static ArrayList<SubwayInfo> getDNSubwayInfo() {
         return DNSubwayInfo;
     }
 
-    public static void setDNSubwayInfo(ArrayList<AllSubwayInfo> DNSubwayInfo) {
+    public static void setDNSubwayInfo(ArrayList<SubwayInfo> DNSubwayInfo) {
         Variable.DNSubwayInfo = DNSubwayInfo;
     }
 

@@ -6,6 +6,8 @@ public class AllSubwayInfo {
 
     }
 
+
+
     private static String KEY = "79694c4f4874616538356f70436a69";
     private static String TYPE = "xml";
     private static String SERVICE = "realtimeStationArrival";

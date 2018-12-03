@@ -18,7 +18,7 @@ public class DetailLineinfo extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        try{
+        try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.stationinfo);
             Intent intent = getIntent();
@@ -26,10 +26,10 @@ public class DetailLineinfo extends AppCompatActivity {
             TextView staioninfotext = (TextView) findViewById(R.id.centertext);   // 현재역 넣은거
             staioninfotext.setText(infostation);
 
-            Log.e("지하철",variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
-            Log.e("지하철",variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
-            Log.e("지하철",variable.getDNSubwayInfo().get(2).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
-            Log.e("지하철",variable.getDNSubwayInfo().get(3).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+            Log.e("지하철", variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+            Log.e("지하철", variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+            Log.e("지하철", variable.getDNSubwayInfo().get(2).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+            Log.e("지하철", variable.getDNSubwayInfo().get(3).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
 
             for (int i = 1; i < variable.getLine4().size(); i++) {  // 0은 제외로함 지금 왜냐면 첫역은 따로처리해야하니까
 
@@ -46,7 +46,7 @@ public class DetailLineinfo extends AppCompatActivity {
             Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getUPSubwayInfo().get(1).getArvlMsg2());
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return;
         }
 
@@ -55,13 +55,13 @@ public class DetailLineinfo extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(variable.getAllSubwayInfo() == null){
+//        if(variable.getAllSubwayInfo() == null){
+//
+//        }else{
+//            variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
+//            variable.getUPSubwayInfo().clear();  // 상행 지우기
+//            variable.getDNSubwayInfo().clear();  // 하행 지우기
 
-        }else{
-            variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
-            variable.getUPSubwayInfo().clear();  // 상행 지우기
-            variable.getDNSubwayInfo().clear();  // 하행 지우기
-
-        }
     }
+
 }

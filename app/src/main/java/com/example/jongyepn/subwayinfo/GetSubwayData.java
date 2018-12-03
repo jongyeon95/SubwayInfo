@@ -20,7 +20,8 @@ import java.util.ArrayList;
 public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
 
-    ArrayList<AllSubwayInfo> allSubwayInfoArrayList;
+    ArrayList<SubwayInfo> SubwayInfoArrayList = new ArrayList<>();
+
     AllSubwayInfo allSubwayInfo;
     Variable variable;
 
@@ -83,7 +84,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
         String arvlMsg3 = null;
         String arvlCd = null;
 
-        allSubwayInfoArrayList = new ArrayList<>();
 
         try {
 
@@ -105,7 +105,7 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
             //variable.getAllSubwayInfo();  // 하 시ㅡㅂ럴ㄹ
 
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
-
+                AllSubwayInfo allSubwayInfo2 = new AllSubwayInfo();
                 switch (parserEvent) {
                     case XmlPullParser.START_TAG://parser가 시작 태그를 만나면 실행
                         if (parser.getName().equals("rowNum")) { //title 만나면 내용을 받을수 있게 하자
@@ -281,72 +281,50 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                                     " bstatnNm:" + bstatnNm + " recpnDt:" + recptnDt + " arvMsg2:" + arvlMsg2 + " arvMsg3:" + arvlMsg3 + " arvICD:" + arvlCd);
 
 
-                            AllSubwayInfo allSubwayInfo2 = new AllSubwayInfo();
-
-                            Log.e("우울",rowNum);
-                            allSubwayInfo2.setRowNum(rowNum);
-                            Log.e("우울",allSubwayInfo2.getRowNum());
-                            allSubwayInfo2.setSelectedCount(selectedCount);
-                            allSubwayInfo2.setTotalCount(totalCount);
-                            allSubwayInfo2.setSubwayId(subwayId);
-                            allSubwayInfo2.setUpdnLine(updnLine);
-                            allSubwayInfo2.setTrainLineNm(trainLineNm);
-                            allSubwayInfo2.setSubwayHeading(subwayHeading);
-                            allSubwayInfo2.setStatnFid(statnFid);
-                            allSubwayInfo2.setStatnTid(statnTid);
-                            allSubwayInfo2.setStatnId(statnId);
-                            allSubwayInfo2.setStatnNm(statnNm);
-                            allSubwayInfo2.setOrdkey(ordkey);
-                            allSubwayInfo2.setSubwayList(subwayList);
-                            allSubwayInfo2.setStatnList(statnList);
-                            allSubwayInfo2.setBarvlDt(barvlDt);
-                            allSubwayInfo2.setBtrainNo(btrainNo);
-                            allSubwayInfo2.setBstatnId(bstatnId);
-                            allSubwayInfo2.setBstatnNm(bstatnNm);
-                            allSubwayInfo2.setRecptnDt(recptnDt);
-                            allSubwayInfo2.setArvlMsg2(arvlMsg2);
-                            allSubwayInfo2.setArvlMsg3(arvlMsg3);
-                            allSubwayInfo2.setArvlCd(arvlCd);
+                            SubwayInfo subwayInfo = new SubwayInfo(rowNum, selectedCount, totalCount, subwayId, updnLine, trainLineNm, subwayHeading, statnFid,
+                                    statnTid, statnId, statnNm, ordkey, subwayList, statnList, barvlDt, btrainNo, bstatnId, bstatnNm, recptnDt, arvlMsg2, arvlMsg3, arvlCd);
 
 
-                            allSubwayInfoArrayList.add(allSubwayInfo2);
+                            SubwayInfoArrayList.add(subwayInfo);
                             //variable.getAllSubwayInfo().add(allSubwayInfo2);  // 아니 여기서 add를 하는데 어째서 다 초기화가되는거야
                             //Log.e("우울",variable.getAllSubwayInfo().get(0).getRowNum());
 
+
                         }
+
+
                 }
+
 
                 parserEvent = parser.next();
             }
 
-            variable.setAllSubwayInfo(allSubwayInfoArrayList);
+            variable.setSubwayInfo(SubwayInfoArrayList);
 
-            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.size()));
-            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(0).getRowNum()));
-            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(1).getRowNum()));
-            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(2).getRowNum()));
-            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(3).getRowNum()));
-
-
+            Log.e("상하행", String.valueOf(SubwayInfoArrayList.size()));
+            Log.e("상하행", String.valueOf(SubwayInfoArrayList.get(0).getRowNum()));
+            Log.e("상하행", String.valueOf(SubwayInfoArrayList.get(1).getRowNum()));
+            Log.e("상하행", String.valueOf(SubwayInfoArrayList.get(2).getRowNum()));
+            Log.e("상하행", String.valueOf(SubwayInfoArrayList.get(3).getRowNum()));
 
 
-            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().size()));
-            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(0).getRowNum()));
-            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(1).getRowNum()));
-            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(2).getRowNum()));
-            Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(3).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getSubwayInfo().size()));
+            Log.e("상하행", String.valueOf(variable.getSubwayInfo().get(0).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getSubwayInfo().get(1).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getSubwayInfo().get(2).getRowNum()));
+            Log.e("상하행", String.valueOf(variable.getSubwayInfo().get(3).getRowNum()));
 
-            for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
-                String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
+            for (int i = 0; i < variable.getSubwayInfo().size(); i++) {
+                String UpDn = variable.getSubwayInfo().get(i).getUpdnLine();
                 Log.e("상하행", UpDn);
                 if (UpDn.equals("상행")) {
-                    variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    variable.getUPSubwayInfo().add(variable.getSubwayInfo().get(i));
                 } else if (UpDn.equals("하행")) {
-                    variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    variable.getDNSubwayInfo().add(variable.getSubwayInfo().get(i));
                 } else if (UpDn.equals("0")) {  // 내선
-                    variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    variable.getUPSubwayInfo().add(variable.getSubwayInfo().get(i));
                 } else if (UpDn.equals("1")) {  // 외선
-                    variable.getDNSubwayInfo().add(variable.getAllSubwayInfo().get(i));
+                    variable.getDNSubwayInfo().add(variable.getSubwayInfo().get(i));
                 }
             }  // 반복되니까 다 저장이 될거다.
 
