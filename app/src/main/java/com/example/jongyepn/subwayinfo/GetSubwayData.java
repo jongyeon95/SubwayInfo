@@ -328,7 +328,7 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
 
         } catch (FileNotFoundException e){
-            e.printStackTrace();
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("로그", "에러가났습니당!");
