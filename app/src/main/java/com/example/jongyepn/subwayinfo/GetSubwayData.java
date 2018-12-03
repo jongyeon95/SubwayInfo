@@ -9,7 +9,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by kwanwoo on 2017. 10. 17..
@@ -17,6 +19,8 @@ import java.net.URL;
 
 public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
+
+    ArrayList<AllSubwayInfo> allSubwayInfoArrayList;
     AllSubwayInfo allSubwayInfo;
     Variable variable;
 
@@ -79,9 +83,9 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
         String arvlMsg3 = null;
         String arvlCd = null;
 
+        allSubwayInfoArrayList = new ArrayList<>();
 
         try {
-
 
 
             Log.d("로그", "에러가났습니당1");
@@ -99,7 +103,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
 
             //variable.getAllSubwayInfo();  // 하 시ㅡㅂ럴ㄹ
-
 
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
 
@@ -267,31 +270,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                             inarvlCd = false;
                         }
 
-                        allSubwayInfo.setRowNum(rowNum);
-                        allSubwayInfo.setSelectedCount(selectedCount);
-                        allSubwayInfo.setTotalCount(totalCount);
-                        allSubwayInfo.setSubwayId(subwayId);
-                        allSubwayInfo.setUpdnLine(updnLine);
-                        allSubwayInfo.setTrainLineNm(trainLineNm);
-                        allSubwayInfo.setSubwayHeading(subwayHeading);
-                        allSubwayInfo.setStatnFid(statnFid);
-                        allSubwayInfo.setStatnTid(statnTid);
-                        allSubwayInfo.setStatnId(statnId);
-                        allSubwayInfo.setStatnNm(statnNm);
-                        allSubwayInfo.setOrdkey(ordkey);
-                        allSubwayInfo.setSubwayList(subwayList);
-                        allSubwayInfo.setStatnList(statnList);
-                        allSubwayInfo.setBarvlDt(barvlDt);
-                        allSubwayInfo.setBtrainNo(btrainNo);
-                        allSubwayInfo.setBstatnId(bstatnId);
-                        allSubwayInfo.setBstatnNm(bstatnNm);
-                        allSubwayInfo.setRecptnDt(recptnDt);
-                        allSubwayInfo.setArvlMsg2(arvlMsg2);
-                        allSubwayInfo.setArvlMsg3(arvlMsg3);
-                        allSubwayInfo.setArvlCd(arvlCd);
-
-                        variable.getAllSubwayInfo().add(allSubwayInfo);  //
-
                         break;
 
                     case XmlPullParser.END_TAG:
@@ -302,10 +280,56 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                                     " statNm:" + statnNm + " drdkey:" + ordkey + " subwayList:" + subwayList + " statnList:" + statnList + " barvIDt:" + barvlDt + " btrainNo:" + btrainNo + " bstatnId:" + bstatnId +
                                     " bstatnNm:" + bstatnNm + " recpnDt:" + recptnDt + " arvMsg2:" + arvlMsg2 + " arvMsg3:" + arvlMsg3 + " arvICD:" + arvlCd);
 
+
+                            AllSubwayInfo allSubwayInfo2 = new AllSubwayInfo();
+
+                            Log.e("우울",rowNum);
+                            allSubwayInfo2.setRowNum(rowNum);
+                            Log.e("우울",allSubwayInfo2.getRowNum());
+                            allSubwayInfo2.setSelectedCount(selectedCount);
+                            allSubwayInfo2.setTotalCount(totalCount);
+                            allSubwayInfo2.setSubwayId(subwayId);
+                            allSubwayInfo2.setUpdnLine(updnLine);
+                            allSubwayInfo2.setTrainLineNm(trainLineNm);
+                            allSubwayInfo2.setSubwayHeading(subwayHeading);
+                            allSubwayInfo2.setStatnFid(statnFid);
+                            allSubwayInfo2.setStatnTid(statnTid);
+                            allSubwayInfo2.setStatnId(statnId);
+                            allSubwayInfo2.setStatnNm(statnNm);
+                            allSubwayInfo2.setOrdkey(ordkey);
+                            allSubwayInfo2.setSubwayList(subwayList);
+                            allSubwayInfo2.setStatnList(statnList);
+                            allSubwayInfo2.setBarvlDt(barvlDt);
+                            allSubwayInfo2.setBtrainNo(btrainNo);
+                            allSubwayInfo2.setBstatnId(bstatnId);
+                            allSubwayInfo2.setBstatnNm(bstatnNm);
+                            allSubwayInfo2.setRecptnDt(recptnDt);
+                            allSubwayInfo2.setArvlMsg2(arvlMsg2);
+                            allSubwayInfo2.setArvlMsg3(arvlMsg3);
+                            allSubwayInfo2.setArvlCd(arvlCd);
+
+
+                            allSubwayInfoArrayList.add(allSubwayInfo2);
+                            //variable.getAllSubwayInfo().add(allSubwayInfo2);  // 아니 여기서 add를 하는데 어째서 다 초기화가되는거야
+                            //Log.e("우울",variable.getAllSubwayInfo().get(0).getRowNum());
+
                         }
                 }
+
                 parserEvent = parser.next();
             }
+
+            variable.setAllSubwayInfo(allSubwayInfoArrayList);
+
+            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.size()));
+            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(0).getRowNum()));
+            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(1).getRowNum()));
+            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(2).getRowNum()));
+            Log.e("상하행", String.valueOf(allSubwayInfoArrayList.get(3).getRowNum()));
+
+
+
+
             Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().size()));
             Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(0).getRowNum()));
             Log.e("상하행", String.valueOf(variable.getAllSubwayInfo().get(1).getRowNum()));
@@ -314,7 +338,7 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
             for (int i = 0; i < variable.getAllSubwayInfo().size(); i++) {
                 String UpDn = variable.getAllSubwayInfo().get(i).getUpdnLine();
-                Log.e("상하행",UpDn);
+                Log.e("상하행", UpDn);
                 if (UpDn.equals("상행")) {
                     variable.getUPSubwayInfo().add(variable.getAllSubwayInfo().get(i));
                 } else if (UpDn.equals("하행")) {
@@ -327,7 +351,7 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
             }  // 반복되니까 다 저장이 될거다.
 
 
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return null;
         } catch (IOException e) {
             e.printStackTrace();

@@ -2,7 +2,10 @@ package com.example.jongyepn.subwayinfo;
 
 public class AllSubwayInfo {
 
-    private static AllSubwayInfo allSubwayInfo;
+    public AllSubwayInfo() {
+
+    }
+
     private static String KEY = "79694c4f4874616538356f70436a69";
     private static String TYPE = "xml";
     private static String SERVICE = "realtimeStationArrival";
@@ -56,14 +59,6 @@ public class AllSubwayInfo {
     private static String arvlMsg2 = null;
     private static String arvlMsg3 = null;
     private static String arvlCd = null;
-
-    private AllSubwayInfo(){
-        allSubwayInfo = new AllSubwayInfo();
-    }
-
-    public static AllSubwayInfo getInstance(){
-        return allSubwayInfo;
-    }
 
     public static String getKEY() {
         return KEY;

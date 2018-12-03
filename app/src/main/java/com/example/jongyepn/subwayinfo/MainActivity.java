@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     protected static int currentX = 0;
     protected static int currentY = 0;
     String infostaion = "";
-    AllSubwayInfo allSubwayInfo = AllSubwayInfo.getInstance();  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
+    AllSubwayInfo allSubwayInfo;  // 원하는 역의 정보를 셋하기 위해 호출하는 역정보 클래스객체
     Variable variable;  // 역정보클래스 객체의 arrayList를 사용하기위한 클래스객체
 
     public static String url1 = "https://api.thingspeak.com/channels/553850/feeds.json?results=1";
@@ -158,9 +158,6 @@ public class MainActivity extends AppCompatActivity
                 // 역을 입력하면 10개를 가져옴
                 allSubwayInfo.setStatnNm(ibtn2.getText().toString());  // 버튼에서 역정보를 받아와서 검색함
 
-                variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
-                variable.getUPSubwayInfo().clear();  // 상행 지우기
-                variable.getDNSubwayInfo().clear();  // 하행 지우기
 
                 new GetSubwayData().execute();
 
@@ -182,6 +179,17 @@ public class MainActivity extends AppCompatActivity
                         DetailLineinfo.class);
                 intent.putExtra("INFO", infostaion);
                 startActivity(intent);
+
+//                variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
+//                variable.getUPSubwayInfo().clear();  // 상행 지우기
+//                variable.getDNSubwayInfo().clear();  // 하행 지우기
+
+
+                //                variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
+//                variable.getUPSubwayInfo().clear();  // 상행 지우기
+//                variable.getDNSubwayInfo().clear();  // 하행 지우기
+
+
             }
         });
 

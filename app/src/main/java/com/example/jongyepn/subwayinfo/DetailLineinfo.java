@@ -51,4 +51,17 @@ public class DetailLineinfo extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(variable.getAllSubwayInfo() == null){
+
+        }else{
+            variable.getAllSubwayInfo().clear();  // 모든데이터 지우기
+            variable.getUPSubwayInfo().clear();  // 상행 지우기
+            variable.getDNSubwayInfo().clear();  // 하행 지우기
+
+        }
+    }
 }

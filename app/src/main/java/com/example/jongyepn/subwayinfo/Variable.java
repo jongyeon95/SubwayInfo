@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Variable {
 
     private static Variable variable;
-    private static ArrayList<AllSubwayInfo> allSubwayInfo = new ArrayList<AllSubwayInfo>();
-    private static ArrayList<AllSubwayInfo> UPSubwayInfo = new ArrayList<>();
-    private static ArrayList<AllSubwayInfo> DNSubwayInfo = new ArrayList<>();
+    private static ArrayList<AllSubwayInfo> allSubwayInfo = null;
+    private static ArrayList<AllSubwayInfo> UPSubwayInfo = null;
+    private static ArrayList<AllSubwayInfo> DNSubwayInfo = null;
 
 
     private static ArrayList<String> Line4 = new ArrayList<>();
