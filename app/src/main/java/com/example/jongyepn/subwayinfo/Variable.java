@@ -13,6 +13,11 @@ public class Variable {
     private static String field2 = "";
     private static String field3 = "";
     private static String field4 = "";
+    private static String field5 = "";
+    private static String field6 = "";
+    private static String field7 = "";
+    private static String field8 = "";
+
 
     public static String getField1() {
         return field1;
@@ -44,6 +49,38 @@ public class Variable {
 
     public static void setField4(String field4) {
         Variable.field4 = field4;
+    }
+
+    public static String getField5() {
+        return field5;
+    }
+
+    public static void setField5(String field5) {
+        Variable.field1 = field5;
+    }
+
+    public static String getField6() {
+        return field6;
+    }
+
+    public static void setField6(String field6) {
+        Variable.field6 = field6;
+    }
+
+    public static String getField7() {
+        return field7;
+    }
+
+    public static void setField7(String field7) {
+        Variable.field7 = field7;
+    }
+
+    public static String getField8() {
+        return field8;
+    }
+
+    public static void setField8(String field8) {
+        Variable.field8 = field8;
     }
 
     private static ArrayList<String> Line4 = new ArrayList<>();

@@ -284,14 +284,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/Information"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:text="혼잡도: 존나높음 \n 습도: 99% \n 온도: 99도 \n " />
 
-
+            <TextView
+                android:id="@+id/Information2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="혼잡도: 존나높음 \n 습도: 99% \n 온도: 99도 \n " />
         </LinearLayout>
 

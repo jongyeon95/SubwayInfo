@@ -60,10 +60,12 @@ public class MainActivity extends AppCompatActivity
         mContext = this;
         mActivity = this;
 
+        variable.getLine4().add("길음");
         variable.getLine4().add("성신여대입구");
         variable.getLine4().add("한성대입구");
         variable.getLine4().add("혜화");
         variable.getLine4().add("동대문");
+        variable.getLine4().add("동대문역사문화공원");
 
 
         View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.replace, null, false);

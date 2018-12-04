@@ -18,6 +18,7 @@ public class DetailLineinfo extends AppCompatActivity {
     TextView Up1;
     TextView Up2;
     TextView Information;
+    TextView Information2;
 
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -27,6 +28,10 @@ public class DetailLineinfo extends AppCompatActivity {
 
             Information = findViewById(R.id.Information);
             Information.setText("온도 값 :" +variable.getField1() +"습도 값 :" + variable.getField2() +"미세먼지 값 :" + variable.getField3() + "혼잡도 값:" + variable.getField4()) ;
+
+
+            Information2 = findViewById(R.id.Information2);
+            Information2.setText("온도 값 :" +variable.getField5() +"습도 값 :" + variable.getField6() +"미세먼지 값 :" + variable.getField7() + "혼잡도 값:" + variable.getField8()) ;
 
             //Intent intent = getIntent();
             String infostation = variable.getSubwayInfo().get(1).getStatnNm();  //
@@ -54,7 +59,7 @@ public class DetailLineinfo extends AppCompatActivity {
             Log.e("지하철5", variable.getLine4().get(3));
 
 
-            for (int i = 1; i < variable.getLine4().size(); i++) {  // 0은 제외로함 지금 왜냐면 첫역은 따로처리해야하니까
+            for (int i = 0; i < variable.getLine4().size(); i++) {  // 0은 제외로함 지금 왜냐면 첫역은 따로처리해야하니까 걍 넣었음 길음역 추가해서
                 Log.e("지하철", String.valueOf(variable.getLine4().size()));
                 Log.e("지하철", String.valueOf(infostation.equals(variable.getLine4().get(i))));
                 if (infostation.equals(variable.getLine4().get(i))) {  // 한성대 였을때
