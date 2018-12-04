@@ -9,6 +9,42 @@ public class Variable {
     private static ArrayList<SubwayInfo> UPSubwayInfo = new ArrayList();
     private static ArrayList<SubwayInfo> DNSubwayInfo = new ArrayList();
 
+    private static String field1 = "";
+    private static String field2 = "";
+    private static String field3 = "";
+    private static String field4 = "";
+
+    public static String getField1() {
+        return field1;
+    }
+
+    public static void setField1(String field1) {
+        Variable.field1 = field1;
+    }
+
+    public static String getField2() {
+        return field2;
+    }
+
+    public static void setField2(String field2) {
+        Variable.field2 = field2;
+    }
+
+    public static String getField3() {
+        return field3;
+    }
+
+    public static void setField3(String field3) {
+        Variable.field3 = field3;
+    }
+
+    public static String getField4() {
+        return field4;
+    }
+
+    public static void setField4(String field4) {
+        Variable.field4 = field4;
+    }
 
     private static ArrayList<String> Line4 = new ArrayList<>();
 

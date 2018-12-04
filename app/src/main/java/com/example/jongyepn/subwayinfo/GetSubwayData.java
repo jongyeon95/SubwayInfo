@@ -1,5 +1,6 @@
 package com.example.jongyepn.subwayinfo;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -283,8 +284,6 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
                             SubwayInfo subwayInfo = new SubwayInfo(rowNum, selectedCount, totalCount, subwayId, updnLine, trainLineNm, subwayHeading, statnFid,
                                     statnTid, statnId, statnNm, ordkey, subwayList, statnList, barvlDt, btrainNo, bstatnId, bstatnNm, recptnDt, arvlMsg2, arvlMsg3, arvlCd);
-
-
                             SubwayInfoArrayList.add(subwayInfo);
                             //variable.getAllSubwayInfo().add(allSubwayInfo2);  // 아니 여기서 add를 하는데 어째서 다 초기화가되는거야
                             //Log.e("우울",variable.getAllSubwayInfo().get(0).getRowNum());
@@ -328,6 +327,8 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                 }
             }  // 반복되니까 다 저장이 될거다.
 
+            Intent GoToDetailintent = new Intent((MainActivity.mContext), DetailLineinfo.class); //메인액티비티로 보내는 인텐트
+            ((MainActivity)MainActivity.mContext).startActivity(GoToDetailintent);
 
         } catch (FileNotFoundException e) {
             return null;
@@ -337,6 +338,8 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
+
+
 
         return null;
     }

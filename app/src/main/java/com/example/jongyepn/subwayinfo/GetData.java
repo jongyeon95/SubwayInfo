@@ -14,10 +14,10 @@ public class GetData extends GetRequest {
     public GetData(Activity activity) {
         super(activity);
     }
-
+    Variable variable;
     @Override
     protected void onPreExecute() {
-        Variable variable;
+
 
 
         String serverURLStr = MainActivity.mainurl;
@@ -43,7 +43,9 @@ public class GetData extends GetRequest {
             Log.e("로그", jsonObject.getString("feeds"));
             Log.e("로그", jsonObject2.getString("field2"));
 
+            String field = jsonObject2.getString("field1");
             // 1번 칸에 사용합니다.
+
 
             String field1 = jsonObject2.getString("field1");
             String field2 = jsonObject2.getString("field2");
@@ -51,7 +53,10 @@ public class GetData extends GetRequest {
             String field4 = jsonObject2.getString("field4");
 
 
-           textView.setText("온도 값 :" +field1 +"습도 값 :" + field2 +"미세먼지 값 :" + field3 + "혼잡도 값:" + field4) ;
+            variable.setField1(field1);
+            variable.setField2(field2);
+            variable.setField3(field3);
+            variable.setField4(field4);
 
         } catch (JSONException e) {
             e.printStackTrace();
