@@ -19,7 +19,7 @@ public class GetData extends GetRequest {
     protected void onPreExecute() {
 
 
-
+        //처음해봄
         String serverURLStr = MainActivity.mainurl;
 
         try {
