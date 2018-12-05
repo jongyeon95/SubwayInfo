@@ -28,7 +28,7 @@ public class DetailLineinfo extends AppCompatActivity {
             //usl 1번만 가능
             // information 1~4
             Information = findViewById(R.id.Information);
-            Information.setText("온도 값 :" +variable.getField1() +"습도 값 :" + variable.getField2() +"미세먼지 값 :" + variable.getField3() + "혼잡도 값:" + variable.getField4()) ;
+            Information.setText("온도: " +variable.getField1() +"%\n습도: " + variable.getField2() +"%\n미세먼지: " + variable.getField3() + "%\n혼잡도: " + variable.getField4()+"명") ;
 
             // information 5~8
 //            Information2 = findViewById(R.id.Information2);
@@ -72,11 +72,11 @@ public class DetailLineinfo extends AppCompatActivity {
 
 
 
-            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg2() +"\n" +variable.getDNSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
-            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg2()+ "\n" +variable.getDNSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
+            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg2() +variable.getDNSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
+            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg2() +variable.getDNSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
 
-            Up1.setText(variable.getUPSubwayInfo().get(0).getArvlMsg2() + "\n" +variable.getUPSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
-            Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg2() + "\n" +variable.getUPSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
+            Up1.setText(variable.getUPSubwayInfo().get(0).getArvlMsg2() +variable.getUPSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
+            Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg2() +variable.getUPSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
 //
 //            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
 //            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(1).getArvlMsg2());

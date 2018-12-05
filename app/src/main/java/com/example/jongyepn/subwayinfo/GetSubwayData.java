@@ -332,7 +332,7 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
             ((MainActivity)MainActivity.mContext).startActivity(GoToDetailintent);
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
             return null;
         } catch (IOException e) {
             Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
