@@ -18,7 +18,7 @@ public class DetailLineinfo extends AppCompatActivity {
     TextView Up1;
     TextView Up2;
     TextView Information;
-    TextView Information2;
+    // TextView Information2;
 
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -30,8 +30,8 @@ public class DetailLineinfo extends AppCompatActivity {
             Information.setText("온도 값 :" +variable.getField1() +"습도 값 :" + variable.getField2() +"미세먼지 값 :" + variable.getField3() + "혼잡도 값:" + variable.getField4()) ;
 
 
-            Information2 = findViewById(R.id.Information2);
-            Information2.setText("온도 값 :" +variable.getField5() +"습도 값 :" + variable.getField6() +"미세먼지 값 :" + variable.getField7() + "혼잡도 값:" + variable.getField8()) ;
+//            Information2 = findViewById(R.id.Information2);
+//            Information2.setText("온도 값 :" +variable.getField5() +"습도 값 :" + variable.getField6() +"미세먼지 값 :" + variable.getField7() + "혼잡도 값:" + variable.getField8()) ;
 
             //Intent intent = getIntent();
             String infostation = variable.getSubwayInfo().get(1).getStatnNm();  //
@@ -71,11 +71,17 @@ public class DetailLineinfo extends AppCompatActivity {
 
 
 
-            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
-            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(1).getArvlMsg2());
+            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg2() +"\n" +variable.getDNSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
+            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg2()+ "\n" +variable.getDNSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
 
-            Up1.setText(variable.getUPSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getUPSubwayInfo().get(0).getArvlMsg2());
-            Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getUPSubwayInfo().get(1).getArvlMsg2());
+            Up1.setText(variable.getUPSubwayInfo().get(0).getArvlMsg2() + "\n" +variable.getUPSubwayInfo().get(0).getBarvlDt() + "초 후 역도착");
+            Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg2() + "\n" +variable.getUPSubwayInfo().get(1).getBarvlDt() + "초 후 역도착");
+//
+//            Down1.setText(variable.getDNSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(0).getArvlMsg2());
+//            Down2.setText(variable.getDNSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getDNSubwayInfo().get(1).getArvlMsg2());
+//
+//            Up1.setText(variable.getUPSubwayInfo().get(0).getArvlMsg3() + "  " + variable.getUPSubwayInfo().get(0).getArvlMsg2());
+//            Up2.setText(variable.getUPSubwayInfo().get(1).getArvlMsg3() + "  " + variable.getUPSubwayInfo().get(1).getArvlMsg2());
 
 
 

@@ -3,6 +3,7 @@ package com.example.jongyepn.subwayinfo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -331,11 +332,15 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
             ((MainActivity)MainActivity.mContext).startActivity(GoToDetailintent);
 
         } catch (FileNotFoundException e) {
+            Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
             return null;
         } catch (IOException e) {
+            Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+
             Log.d("로그", "에러가났습니당!");
         } catch (XmlPullParserException e) {
+            Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
