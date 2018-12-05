@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity
     public static String url1 = "https://api.thingspeak.com/channels/553850/feeds.json?results=1";
     public static String url2 = "https://api.thingspeak.com/channels/553851/feeds.json?results=1";
     public static String url3 = "https://api.thingspeak.com/channels/640587/feeds.json?api_key=BNYUQ3H2YY8UF68D&results=1";
-    public static String url4 = "https://api.thingspeak.com/channels/499591/feeds.json?results=1";
     public static String mainurl = "null";
     private Bitmap imagebitmap = null;
 
@@ -162,8 +161,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 seeButton(b4);
-                mainurl = url4;
-                new GetData(MainActivity.this).execute();
             }
         });
 
