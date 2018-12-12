@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener/*, View.OnTouchListener*/ {
     static StaionAdapter adapter;
-
+    public static boolean loading;
     static Activity mActivity;
     static Context mContext;
     private static HorizontalScrollView Scroll_Horizontal;
@@ -355,4 +355,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }*/
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loading = true;
+    }
 }

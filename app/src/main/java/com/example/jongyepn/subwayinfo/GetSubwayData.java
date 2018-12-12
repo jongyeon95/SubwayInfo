@@ -1,5 +1,6 @@
 package com.example.jongyepn.subwayinfo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class GetSubwayData extends AsyncTask<String, Void, Void> {
 
 
+    static ProgressDialog LoadingDialog;
+
     ArrayList<SubwayInfo> SubwayInfoArrayList = new ArrayList<>();
 
     AllSubwayInfo allSubwayInfo;
@@ -34,6 +37,21 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
     Integer START_INDEX = allSubwayInfo.getStartIndex();
     Integer END_INDEX = allSubwayInfo.getEndIndex();
     String statnNm = allSubwayInfo.getStatnNm();
+
+    @Override
+    protected void onPreExecute() {
+        LoadingDialog = new ProgressDialog(MainActivity.mActivity);
+
+        if (MainActivity.loading) {
+            LoadingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            LoadingDialog.setMessage("로딩 중입니다...");
+
+            LoadingDialog.show();
+
+
+        }
+    }
+
 
 
     @Override
@@ -328,11 +346,10 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
                 }
             }  // 반복되니까 다 저장이 될거다.
 
-            Intent GoToDetailintent = new Intent((MainActivity.mContext), DetailLineinfo.class); //메인액티비티로 보내는 인텐트
-            ((MainActivity)MainActivity.mContext).startActivity(GoToDetailintent);
+
 
         } catch (FileNotFoundException e) {
-           // Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
             return null;
         } catch (IOException e) {
             Toast.makeText(MainActivity.mContext, "서버오류가 있습니다. 잠시 후 다시 시도해주세요", Toast.LENGTH_SHORT).show();
@@ -345,8 +362,16 @@ public class GetSubwayData extends AsyncTask<String, Void, Void> {
         }
 
 
-
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        if (MainActivity.loading) {
+            LoadingDialog.dismiss();
+        }
+        Intent GoToDetailintent = new Intent((MainActivity.mContext), DetailLineinfo.class); //메인액티비티로 보내는 인텐트
+        ((MainActivity) MainActivity.mContext).startActivity(GoToDetailintent);
     }
 
 
